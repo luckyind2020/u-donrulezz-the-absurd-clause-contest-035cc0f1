@@ -3,8 +3,9 @@
 from pathlib import Path
 
 
-def load_clause(path: str = "entry.txt") -> str:
-    return Path(path).read_text(encoding="utf-8").strip()
+def load_clause(path: str | None = None) -> str:
+    entry_path = Path(__file__).with_name("entry.txt") if path is None else Path(path)
+    return entry_path.read_text(encoding="utf-8").strip()
 
 
 def check_clause(clause: str, limit: int = 200) -> str:
